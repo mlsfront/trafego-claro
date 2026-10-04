@@ -1,530 +1,63 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR" data-base-url="./">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-  <title>Trafego Claro - Marketing Digital</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tráfego Claro: organize campanhas, diagnostique gargalos e acompanhe leads com clareza.">
+  <meta name="theme-color" content="#111827">
+  <title>Tráfego Claro — Marketing orientado a resultados</title>
+  <script>window.BASE_URL = document.documentElement.dataset.baseUrl || './';</script>
+  <link id="favicon" rel="icon" href="" type="image/x-icon">
+  <link id="appStylesheet" rel="stylesheet" href="">
 </head>
-
 <body>
-  <div class="app">
-
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-icon">Tc</div>
-        <span>Trafego Claro</span>
-      </div>
-
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <a class="brand" href="#dashboard" data-page-link="dashboard" aria-label="Ir para visão geral">
+        <span class="brand-mark">Tc</span><span>Tráfego Claro</span>
+      </a>
       <div class="menu-label">Workspace</div>
-
       <nav class="nav">
-        <button class="nav-button active" data-page="dashboard">
-          <span class="nav-icon">⌂</span>
-          <span>Visão geral</span>
-        </button>
-
-        <button class="nav-button" data-page="diagnosis">
-          <span class="nav-icon">⌕</span>
-          <span>Diagnósticos</span>
-        </button>
-
-        <button class="nav-button" data-page="campaigns">
-          <span class="nav-icon">◈</span>
-          <span>Campanhas</span>
-        </button>
-
-        <button class="nav-button" data-page="leads">
-          <span class="nav-icon">♧</span>
-          <span>Leads</span>
-        </button>
-
-        <button class="nav-button" data-page="reports">
-          <span class="nav-icon">▤</span>
-          <span>Relatórios</span>
-        </button>
+        <button class="nav-button active" type="button" data-page="dashboard"><span aria-hidden="true">⌂</span><span>Visão geral</span></button>
+        <button class="nav-button" type="button" data-page="diagnosis"><span aria-hidden="true">⌕</span><span>Diagnósticos</span></button>
+        <button class="nav-button" type="button" data-page="campaigns"><span aria-hidden="true">◈</span><span>Campanhas</span></button>
+        <button class="nav-button" type="button" data-page="leads"><span aria-hidden="true">♧</span><span>Leads</span></button>
+        <button class="nav-button" type="button" data-page="reports"><span aria-hidden="true">▤</span><span>Relatórios</span></button>
       </nav>
-
-      <div class="sidebar-bottom">
-        Protótipo MVP<br>
-        Marketing e performance
-      </div>
+      <div class="sidebar-bottom"><strong>MVP operacional</strong><br>Marketing e performance</div>
     </aside>
 
-    <main class="main">
+    <main class="main-content">
       <header class="topbar">
-        <div class="breadcrumb">
-          Workspace / <strong id="currentPage">Visão geral</strong>
-        </div>
-
-        <div class="user-area">
-          <div class="notification">♢</div>
-          <div class="avatar">JS</div>
-        </div>
+        <div class="breadcrumb">Workspace / <strong id="currentPage">Visão geral</strong></div>
+        <div class="user-area"><button class="icon-button" id="notificationButton" type="button" aria-label="Ver alertas">♢<span class="notification-dot" aria-hidden="true"></span></button><div class="avatar" aria-label="Usuário João Silva">JS</div></div>
       </header>
 
       <div class="content">
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-        <!-- DASHBOARD -->
-        <section class="page active" id="dashboard">
-          <div class="page-header">
-            <div>
-              <h1>Visão geral</h1>
-              <p>Acompanhe a saúde das suas campanhas e oportunidades.</p>
-            </div>
-
-            <div class="actions">
-              <button class="btn btn-secondary">Exportar</button>
-              <button class="btn btn-primary" data-page-link="diagnosis">
-                + Novo diagnóstico
-              </button>
-            </div>
-          </div>
-
-          <div class="stats">
-            <div class="card stat-card">
-              <div class="stat-top">
-                <span class="stat-title">Investimento</span>
-                <span class="stat-icon">R$</span>
-              </div>
-              <div class="stat-value">R$ 8.420</div>
-              <div class="stat-change">↑ 12,4% este mês</div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-top">
-                <span class="stat-title">Leads gerados</span>
-                <span class="stat-icon">♧</span>
-              </div>
-              <div class="stat-value">486</div>
-              <div class="stat-change">↑ 18,2% este mês</div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-top">
-                <span class="stat-title">Custo por lead</span>
-                <span class="stat-icon">⌁</span>
-              </div>
-              <div class="stat-value">R$ 17,32</div>
-              <div class="stat-change">↓ 6,8% este mês</div>
-            </div>
-
-            <div class="card stat-card">
-              <div class="stat-top">
-                <span class="stat-title">Conversão</span>
-                <span class="stat-icon">↗</span>
-              </div>
-              <div class="stat-value">8,6%</div>
-              <div class="stat-change neutral">Meta: 10%</div>
-            </div>
-          </div>
-
-          <div class="grid-main">
-            <div class="card">
-              <div class="card-header">
-                <h2>Desempenho das campanhas</h2>
-                <span>Últimos 30 dias</span>
-              </div>
-
-              <div class="card-body">
-                <div class="chart-wrapper">
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 40%"></div>
-                    <div class="bar bar-blue" style="height: 28%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 52%"></div>
-                    <div class="bar bar-blue" style="height: 37%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 45%"></div>
-                    <div class="bar bar-blue" style="height: 42%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 68%"></div>
-                    <div class="bar bar-blue" style="height: 49%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 58%"></div>
-                    <div class="bar bar-blue" style="height: 55%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 76%"></div>
-                    <div class="bar bar-blue" style="height: 63%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 85%"></div>
-                    <div class="bar bar-blue" style="height: 70%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 72%"></div>
-                    <div class="bar bar-blue" style="height: 78%"></div>
-                  </div>
-                  <div class="bar-group">
-                    <div class="bar bar-purple" style="height: 91%"></div>
-                    <div class="bar bar-blue" style="height: 81%"></div>
-                  </div>
-                </div>
-
-                <div class="chart-legend">
-                  <div class="legend-item">
-                    <span class="legend-dot" style="background:#635bff"></span>
-                    Investimento
-                  </div>
-                  <div class="legend-item">
-                    <span class="legend-dot" style="background:#9aa4ff"></span>
-                    Receita
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <h2>Saúde das campanhas</h2>
-                <span>Atualizado hoje</span>
-              </div>
-
-              <div class="card-body health">
-                <div class="health-circle">
-                  <div class="health-number">
-                    <strong>72%</strong>
-                    <span>saudável</span>
-                  </div>
-                </div>
-
-                <div class="health-status">● Bom desempenho geral</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bottom-grid">
-            <div class="card">
-              <div class="card-header">
-                <h2>Campanhas ativas</h2>
-                <span>Ver todas →</span>
-              </div>
-
-              <div class="campaign-list">
-                <div class="campaign-row">
-                  <div>
-                    <div class="campaign-name">Google Ads - Cursos de beleza</div>
-                    <div class="campaign-meta">Google Search</div>
-                  </div>
-                  <div>R$ 2.450</div>
-                  <div>142 leads</div>
-                  <span class="badge badge-success">Ativa</span>
-                </div>
-
-                <div class="campaign-row">
-                  <div>
-                    <div class="campaign-name">Meta Ads - Lumo Internacional</div>
-                    <div class="campaign-meta">Facebook e Instagram</div>
-                  </div>
-                  <div>R$ 3.200</div>
-                  <div>198 leads</div>
-                  <span class="badge badge-success">Ativa</span>
-                </div>
-
-                <div class="campaign-row">
-                  <div>
-                    <div class="campaign-name">Google Ads - Psicologia</div>
-                    <div class="campaign-meta">Geração de leads</div>
-                  </div>
-                  <div>R$ 1.870</div>
-                  <div>96 leads</div>
-                  <span class="badge badge-warning">Atenção</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <h2>Alertas e recomendações</h2>
-                <span>3 pendentes</span>
-              </div>
-
-              <div class="card-body">
-                <div class="alert">
-                  <div>⚠️</div>
-                  <div>
-                    <strong>Campanha sem conversões</strong>
-                    <p>A campanha “Psicologia” está há 3 dias sem registrar conversões.</p>
-                  </div>
-                </div>
-
-                <div class="alert">
-                  <div>💡</div>
-                  <div>
-                    <strong>Revise sua página de destino</strong>
-                    <p>A taxa de conversão está abaixo da média esperada.</p>
-                  </div>
-                </div>
-
-                <div class="alert">
-                  <div>📊</div>
-                  <div>
-                    <strong>Relatório disponível</strong>
-                    <p>O relatório mensal de setembro está pronto para envio.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <section class="page active" id="dashboard" aria-labelledby="dashboard-title">
+          <div class="page-header"><div><span class="eyebrow">Performance em foco</span><h1 id="dashboard-title">Visão geral</h1><p>Acompanhe a saúde das campanhas e priorize as próximas ações.</p></div><div class="actions"><button class="btn btn-secondary" type="button" id="exportDashboard">Exportar dados</button><button class="btn btn-primary" type="button" data-page-link="diagnosis">+ Novo diagnóstico</button></div></div>
+          <div class="stats" id="statsGrid" aria-live="polite"></div>
+          <div class="grid-main"><article class="card"><div class="card-header"><div><h2>Desempenho das campanhas</h2><span>Últimos 30 dias</span></div><span class="legend-note">Investimento × receita</span></div><div class="card-body"><div class="chart-wrapper" id="performanceChart" aria-label="Gráfico de desempenho"></div><div class="chart-legend"><span><i class="legend-dot purple"></i>Investimento</span><span><i class="legend-dot blue"></i>Receita</span></div></div></article><article class="card"><div class="card-header"><div><h2>Saúde das campanhas</h2><span>Calculada pelos dados atuais</span></div></div><div class="card-body health"><div class="health-circle" id="healthCircle"><div class="health-number"><strong id="healthValue">0%</strong><span>saudável</span></div></div><div class="health-status" id="healthStatus"></div></div></article></div>
+          <div class="bottom-grid"><article class="card"><div class="card-header"><h2>Campanhas ativas</h2><button class="link-button" type="button" data-page-link="campaigns">Ver todas →</button></div><div class="campaign-list" id="dashboardCampaigns"></div></article><article class="card"><div class="card-header"><h2>Alertas e recomendações</h2><span id="alertCount">0 pendentes</span></div><div class="card-body" id="alertsList"></div></article></div>
         </section>
 
-        <!-- DIAGNÓSTICO -->
-        <section class="page" id="diagnosis">
-          <div class="page-header">
-            <div>
-              <h1>Novo diagnóstico</h1>
-              <p>Identifique problemas e oportunidades em uma campanha.</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h2>Informações da campanha</h2>
-              <span>Etapa 1 de 2</span>
-            </div>
-
-            <div class="card-body">
-              <form id="diagnosisForm">
-                <div class="form-grid">
-                  <div class="field">
-                    <label for="business">Nome do negócio</label>
-                    <input id="business" required placeholder="Ex.: Escola de Beleza">
-                  </div>
-
-                  <div class="field">
-                    <label for="channel">Canal da campanha</label>
-                    <select id="channel">
-                      <option>Google Ads</option>
-                      <option>Meta Ads</option>
-                      <option>TikTok Ads</option>
-                    </select>
-                  </div>
-
-                  <div class="field">
-                    <label for="objective">Objetivo principal</label>
-                    <select id="objective">
-                      <option>Gerar leads</option>
-                      <option>Vender produtos</option>
-                      <option>Receber mensagens</option>
-                      <option>Gerar tráfego</option>
-                    </select>
-                  </div>
-
-                  <div class="field">
-                    <label for="status">Problema percebido</label>
-                    <select id="status">
-                      <option>Campanha não veicula</option>
-                      <option>Poucos cliques</option>
-                      <option>Poucos leads</option>
-                      <option>Custo alto</option>
-                      <option>Sem conversões</option>
-                    </select>
-                  </div>
-
-                  <div class="field">
-                    <label for="investment">Investimento mensal</label>
-                    <input id="investment" type="number" placeholder="Ex.: 2500">
-                  </div>
-
-                  <div class="field">
-                    <label for="landing">Página de destino</label>
-                    <input id="landing" type="url" placeholder="https://seusite.com.br">
-                  </div>
-
-                  <div class="field full">
-                    <label for="notes">Observações</label>
-                    <textarea id="notes" placeholder="Descreva o que está acontecendo com a campanha..."></textarea>
-                  </div>
-                </div>
-
-                <div class="form-actions">
-                  <button type="reset" class="btn btn-secondary">Limpar</button>
-                  <button type="submit" class="btn btn-primary">Gerar diagnóstico</button>
-                </div>
-              </form>
-
-              <div class="diagnosis-result" id="diagnosisResult">
-                <h3>Diagnóstico preliminar gerado</h3>
-                <ul id="diagnosisList"></ul>
-              </div>
-            </div>
-          </div>
+        <section class="page" id="diagnosis" aria-labelledby="diagnosis-title">
+          <div class="page-header"><div><span class="eyebrow">Análise orientada a ação</span><h1 id="diagnosis-title">Novo diagnóstico</h1><p>Identifique gargalos e registre um plano de ação para a campanha.</p></div></div>
+          <article class="card"><div class="card-header"><div><h2>Informações da campanha</h2><span>Campos com * são obrigatórios</span></div></div><div class="card-body"><form id="diagnosisForm" novalidate><div class="form-grid"><div class="field"><label for="business">Nome do negócio *</label><input id="business" name="business" required maxlength="80" placeholder="Ex.: Escola de Beleza"><small class="field-error" data-error-for="business"></small></div><div class="field"><label for="channel">Canal *</label><select id="channel" name="channel"><option>Google Ads</option><option>Meta Ads</option><option>TikTok Ads</option></select></div><div class="field"><label for="objective">Objetivo principal *</label><select id="objective" name="objective"><option>Gerar leads</option><option>Vender produtos</option><option>Receber mensagens</option><option>Gerar tráfego</option></select></div><div class="field"><label for="status">Problema percebido *</label><select id="status" name="status"><option>Campanha não veicula</option><option>Poucos cliques</option><option>Poucos leads</option><option>Custo alto</option><option>Sem conversões</option></select></div><div class="field"><label for="investment">Investimento mensal (R$)</label><input id="investment" name="investment" inputmode="decimal" type="number" min="0" step="0.01" placeholder="Ex.: 2500"></div><div class="field"><label for="landing">Página de destino</label><input id="landing" name="landing" type="url" placeholder="https://seusite.com.br"><small class="field-error" data-error-for="landing"></small></div><div class="field full"><label for="notes">Observações</label><textarea id="notes" name="notes" maxlength="500" placeholder="Contexto, testes já realizados ou hipóteses..."></textarea><small class="char-count" data-count-for="notes">0/500</small></div></div><div class="form-actions"><button type="reset" class="btn btn-secondary">Limpar</button><button type="submit" class="btn btn-primary">Gerar diagnóstico</button></div></form><div class="diagnosis-result" id="diagnosisResult" aria-live="polite"><div class="result-heading"><div><span class="eyebrow">Próximos passos</span><h3>Diagnóstico preliminar gerado</h3></div><span class="badge badge-success">Plano sugerido</span></div><ul id="diagnosisList"></ul><button type="button" class="btn btn-secondary" id="saveDiagnosis">Salvar diagnóstico</button></div></div></article>
         </section>
 
-        <!-- CAMPANHAS -->
-        <section class="page" id="campaigns">
-          <div class="page-header">
-            <div>
-              <h1>Campanhas</h1>
-              <p>Organize campanhas, canais e resultados.</p>
-            </div>
+        <section class="page" id="campaigns" aria-labelledby="campaigns-title"><div class="page-header"><div><span class="eyebrow">Aquisição</span><h1 id="campaigns-title">Campanhas</h1><p>Organize campanhas, canais, orçamento e resultados.</p></div><button class="btn btn-primary" type="button" id="newCampaignButton">+ Nova campanha</button></div><article class="card"><div class="card-header"><h2>Todas as campanhas</h2><div class="filters"><label class="sr-only" for="campaignChannelFilter">Filtrar por canal</label><select id="campaignChannelFilter"><option value="all">Todos os canais</option><option>Google Ads</option><option>Meta Ads</option><option>TikTok Ads</option></select><label class="sr-only" for="campaignStatusFilter">Filtrar por status</label><select id="campaignStatusFilter"><option value="all">Todos os status</option><option>Ativa</option><option>Atenção</option><option>Revisar</option></select></div></div><div class="campaign-list" id="campaignList"></div><div class="empty-state" id="campaignEmpty">Nenhuma campanha corresponde aos filtros.</div></article></section>
 
-            <button class="btn btn-primary">+ Nova campanha</button>
-          </div>
+        <section class="page" id="leads" aria-labelledby="leads-title"><div class="page-header"><div><span class="eyebrow">Relacionamento</span><h1 id="leads-title">Leads</h1><p>Acompanhe a jornada dos contatos gerados pelas campanhas.</p></div><button class="btn btn-primary" type="button" id="newLeadButton">+ Novo lead</button></div><article class="card"><div class="card-header"><h2>Pipeline de leads</h2><div class="filters"><label class="sr-only" for="leadSearch">Buscar lead</label><input id="leadSearch" type="search" placeholder="Buscar por nome..."><label class="sr-only" for="leadStatusFilter">Filtrar por status</label><select id="leadStatusFilter"><option value="all">Todos os status</option><option>Convertido</option><option>Em negociação</option><option>Contatado</option><option>Novo</option></select></div></div><div class="table-wrap"><table class="lead-table"><thead><tr><th>Nome</th><th>Origem</th><th>Campanha</th><th>Status</th><th>Último contato</th></tr></thead><tbody id="leadTableBody"></tbody></table></div><div class="empty-state" id="leadEmpty">Nenhum lead encontrado.</div></article></section>
 
-          <div class="card">
-            <div class="card-header">
-              <h2>Todas as campanhas</h2>
-              <select style="padding: 8px; border: 1px solid var(--border); border-radius: 7px;">
-                <option>Todos os canais</option>
-                <option>Google Ads</option>
-                <option>Meta Ads</option>
-                <option>TikTok Ads</option>
-              </select>
-            </div>
-
-            <div class="campaign-list">
-              <div class="campaign-row">
-                <div>
-                  <div class="campaign-name">Cursos de beleza</div>
-                  <div class="campaign-meta">Google Ads · Geração de leads</div>
-                </div>
-                <div>R$ 2.450</div>
-                <div>142 leads</div>
-                <span class="badge badge-success">Ativa</span>
-              </div>
-
-              <div class="campaign-row">
-                <div>
-                  <div class="campaign-name">Lumo Internacional</div>
-                  <div class="campaign-meta">Meta Ads · Inglês e espanhol</div>
-                </div>
-                <div>R$ 3.200</div>
-                <div>198 leads</div>
-                <span class="badge badge-success">Ativa</span>
-              </div>
-
-              <div class="campaign-row">
-                <div>
-                  <div class="campaign-name">Venda de suplementos</div>
-                  <div class="campaign-meta">Meta Ads · Conversões</div>
-                </div>
-                <div>R$ 900</div>
-                <div>51 leads</div>
-                <span class="badge badge-warning">Atenção</span>
-              </div>
-
-              <div class="campaign-row">
-                <div>
-                  <div class="campaign-name">Psicologia local</div>
-                  <div class="campaign-meta">Google Ads · Leads</div>
-                </div>
-                <div>R$ 1.870</div>
-                <div>96 leads</div>
-                <span class="badge badge-danger">Revisar</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- LEADS -->
-        <section class="page" id="leads">
-          <div class="page-header">
-            <div>
-              <h1>Leads</h1>
-              <p>Acompanhe a jornada dos contatos gerados pelas campanhas.</p>
-            </div>
-
-            <button class="btn btn-primary">+ Novo lead</button>
-          </div>
-
-          <div class="card">
-            <table class="lead-table">
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Origem</th>
-                  <th>Campanha</th>
-                  <th>Status</th>
-                  <th>Último contato</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>Mariana Costa</td>
-                  <td>Google Ads</td>
-                  <td>Cursos de beleza</td>
-                  <td><span class="badge badge-success">Convertido</span></td>
-                  <td>Hoje</td>
-                </tr>
-
-                <tr>
-                  <td>Rafael Mendes</td>
-                  <td>Meta Ads</td>
-                  <td>Lumo Internacional</td>
-                  <td><span class="badge badge-warning">Em negociação</span></td>
-                  <td>Ontem</td>
-                </tr>
-
-                <tr>
-                  <td>Camila Souza</td>
-                  <td>Google Ads</td>
-                  <td>Psicologia local</td>
-                  <td><span class="badge badge-danger">Novo</span></td>
-                  <td>Há 2 dias</td>
-                </tr>
-
-                <tr>
-                  <td>João Oliveira</td>
-                  <td>Meta Ads</td>
-                  <td>Venda de suplementos</td>
-                  <td><span class="badge badge-warning">Contatado</span></td>
-                  <td>Há 3 dias</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- RELATÓRIOS -->
-        <section class="page" id="reports">
-          <div class="page-header">
-            <div>
-              <h1>Relatórios</h1>
-              <p>Transforme dados de campanhas em decisões.</p>
-            </div>
-
-            <button class="btn btn-primary" onclick="window.print()">Imprimir relatório</button>
-          </div>
-
-          <div class="card report-box">
-            <h3>Relatório mensal - Setembro</h3>
-
-            <p>
-              Durante o período analisado, as campanhas geraram
-              <strong>486 leads</strong> com investimento total de
-              <strong>R$ 8.420</strong>.
-            </p>
-
-            <p>
-              O custo médio por lead foi de <strong>R$ 17,32</strong>.
-              As campanhas de Meta Ads apresentaram maior volume de leads,
-              enquanto a campanha de Google Ads para psicologia necessita de
-              revisão na página de destino e no rastreamento de conversões.
-            </p>
-
-            <h3>Recomendações</h3>
-
-            <ul>
-              <li>Revisar a página de destino da campanha de psicologia.</li>
-              <li>Validar os eventos de conversão no Google Tag Manager.</li>
-              <li>Testar novos criativos para a campanha internacional.</li>
-              <li>Classificar os leads por origem e potencial de compra.</li>
-            </ul>
-          </div>
-        </section>
-
+        <section class="page" id="reports" aria-labelledby="reports-title"><div class="page-header"><div><span class="eyebrow">Comunicação de resultados</span><h1 id="reports-title">Relatórios</h1><p>Transforme dados de campanhas em decisões compartilháveis.</p></div><button class="btn btn-primary" type="button" id="printReport">Imprimir relatório</button></div><article class="card report-box" id="reportBox"><div class="report-head"><div><span class="eyebrow">Tráfego Claro</span><h2>Relatório mensal</h2></div><span id="reportPeriod"></span></div><div id="reportSummary"></div><h3>Recomendações prioritárias</h3><ul id="reportRecommendations"></ul></article></section>
       </div>
     </main>
   </div>
-
-  <script src="assets/js/app.js"></script>
+  <dialog id="quickAddDialog" class="modal"><form method="dialog" id="quickAddForm"><div class="modal-header"><div><span class="eyebrow">Cadastro rápido</span><h2 id="modalTitle">Novo registro</h2></div><button class="icon-button" value="cancel" aria-label="Fechar">×</button></div><div id="modalFields"></div><div class="form-actions"><button class="btn btn-secondary" value="cancel">Cancelar</button><button class="btn btn-primary" value="default">Salvar</button></div></form></dialog>
+  <script>document.getElementById('favicon').href = window.BASE_URL + 'assets/images/favicon.ico'; document.getElementById('appStylesheet').href = window.BASE_URL + 'assets/css/style.css';</script>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>
