@@ -1,130 +1,61 @@
-# Planejamento Estratégico: Plataforma de Diagnóstico, Planejamento e Acompanhamento de Marketing Digital
+# Planejamento estratégico e produto
 
-## 1. Visão Geral da Dor de Mercado
+## Visão
 
-Com base na alta demanda identificada nos e-mails (gestão, análise, implantação de tráfego pago, publicidade em redes sociais, geração de leads e vendas online), constatamos que a dor real do mercado não é apenas a necessidade de tráfego pago, mas sim:
+O Tráfego Claro ajuda pequenos negócios e profissionais de performance a sair de dados espalhados em plataformas e planilhas para um fluxo simples: **diagnosticar, priorizar, executar e demonstrar resultado**. A dor central não é apenas “comprar tráfego”; é saber por que a campanha não entrega, qual ação vem primeiro e se o lead virou oportunidade comercial.
 
-> **Pequenas empresas têm dificuldade para planejar, configurar, acompanhar e otimizar suas campanhas de marketing digital de forma organizada e orientada a resultados.**
+## Hipótese de produto
 
-Devido à falta de conhecimento técnico, tempo ou estrutura, esses profissionais e pequenos negócios precisam de uma solução centralizada e prática.
+Se o usuário conseguir concluir um diagnóstico em poucos minutos, registrar a campanha e acompanhar o lead no mesmo espaço, ele terá mais clareza para otimizar investimento e demonstrar valor ao cliente. A primeira versão deve provar esse fluxo antes de ampliar integrações.
 
----
+## MVP atual
 
-## 2. Abordagem: Uma Solução Única vs. Múltiplas Ferramentas
+A versão `0.2.0-dev` entrega o fluxo de demonstração no navegador: dashboard, campanhas, leads, diagnóstico baseado em regras, recomendações, persistência local, exportação JSON e relatório imprimível. O objetivo é validar a experiência e a taxonomia, não simular uma conexão real com as plataformas de anúncios.
 
-Para atender às necessidades do mercado sem dispersar os esforços de desenvolvimento, a melhor estratégia é **uma solução principal modular**, com diferentes módulos e planos progressivos. 
+## Escopo técnico do próximo incremento
 
-Uma única ferramenta não conseguirá abranger inicialmente com profundidade todas as áreas (gestão, diagnóstico, influenciadores, redes sociais, administração e consultoria), mas uma plataforma central modular permite começar de forma simples e evoluir gradualmente.
+O backend recomendado é PHP 8.2 com PDO e MySQL, em MVC simples. A API deve usar prepared statements, validação de payload no servidor, sessões seguras, CSRF, autorização por workspace e logs de auditoria. O frontend pode continuar em JavaScript Vanilla, consumindo endpoints JSON com estados de carregamento, erro e sucesso.
 
----
+Entidades mínimas: `users`, `workspaces`, `businesses`, `campaigns`, `campaign_metrics`, `leads`, `lead_interactions`, `diagnoses`, `recommendations`, `reports` e `audit_logs`. Cada tabela de domínio deve possuir `workspace_id`, timestamps e índices coerentes com os filtros mais usados.
 
-## 3. Produto Recomendado
+## Métricas e definições
 
-Uma **plataforma de diagnóstico, planejamento e acompanhamento de marketing digital para pequenos negócios**, desenvolvida sob medida para apoiar o fluxo de trabalho sem exigir integrações complexas com APIs de anúncios logo no início.
+- **CTR:** cliques / impressões × 100.
+- **CPL:** investimento / leads.
+- **CPA:** investimento / conversões comerciais.
+- **Taxa de conversão:** conversões / leads ou sessões, sempre exibindo o denominador adotado.
+- **ROAS:** receita atribuída / investimento.
 
-### Funcionalidades de Apoio Inicial:
-1. Cadastro do negócio
-2. Definição de objetivos
-3. Identificação do público-alvo
-4. Elaboração de planos de campanha
-5. Geração de checklists
-6. Acompanhamento de métricas
-7. Registro de problemas
-8. Organização de leads
-9. Apresentação de relatórios para clientes
+Métricas de produto: conclusão do diagnóstico, tempo até primeiro cadastro, leads contatados em 24 horas, retorno em 7 dias, exportações e recomendações marcadas como executadas. Métricas de aquisição: CAC por canal, taxa de ativação e conversão da landing page.
 
----
+## Plano de validação
 
-## 4. Módulos do Sistema
+Na primeira semana, entrevistar 5–10 usuários do ICP e observar a execução do diagnóstico. Na segunda, medir o funil `visita → início → conclusão → cadastro → retorno`. A hipótese será considerada promissora se pelo menos 60% concluírem o diagnóstico sem ajuda e metade cadastrar uma campanha ou lead durante o teste.
 
-### 4.1. Diagnóstico de Campanhas
-Atende a problemas comuns como: campanhas do Google Ads sem veiculação, anúncios sem impressões, baixo CTR, custo elevado, problemas de segmentação e ausência de rastreamento.
-* **Funcionamento:** Questionário estruturado onde o usuário preenche informações (objetivo, público, orçamento, palavras-chave, anúncios, páginas de destino, tags e conversões) e o sistema gera análises e recomendações baseadas em regras pré-cadastradas.
+## Go-to-market
 
-### 4.2. Planejador de Campanhas
-O usuário informa os dados do negócio, produto, região, orçamento, objetivo e canal desejado. O sistema gera:
-* Estrutura de campanha e grupos de anúncios
-* Sugestões de palavras-chave e copies (textos e chamadas para ação)
-* Checklist de configuração e eventos de rastreamento
+O posicionamento recomendado é “clareza para decidir o próximo real investido”. A aquisição inicial deve priorizar intenção: SEO e anúncios de pesquisa para dores específicas (“campanha sem leads”, “CPL alto”, “Google Ads não veicula”), conteúdo educativo de métricas e parcerias com contadores, consultores e freelancers.
 
-### 4.3. Painel de Acompanhamento (Métricas)
-Permite o registro manual de investimentos, impressões, cliques, leads, vendas e faturamento, calculando automaticamente indicadores essenciais:
+A oferta de entrada é um diagnóstico gratuito com resultado imediato. O próximo passo é um workspace com campanhas e leads. Planos pagos podem evoluir de Diagnóstico para Gestão, Leads e Agência, mas só depois da validação de retenção e disposição a pagar.
 
-$$
-CTR = \frac{\text{cliques}}{\text{impressões}} \times 100
-$$
+## Fases
 
-$$
-CPL = \frac{\text{investimento}}{\text{leads}}
-$$
+### Fase 0 — Validação
 
-$$
-CPA = \frac{\text{investimento}}{\text{clientes}}
-$$
+Entrevistas, instrumentação de eventos e teste de usabilidade do fluxo atual.
 
-$$
-ROAS = \frac{\text{receita atribuída aos anúncios}}{\text{investimento}}
-$$
+### Fase 1 — MVP multiusuário
 
-### 4.4. CRM Simples de Leads
-Conecta o tráfego pago ao resultado comercial, indo além dos cliques:
-* Cadastro de leads, origem, campanha e estágio de atendimento
-* Status de acompanhamento: *novo, contatado, proposta enviada, convertido ou perdido*
+Autenticação, workspace, CRUD, banco MySQL, API, histórico de diagnósticos e permissões.
 
-### 4.5. Gerador de Relatórios
-Geração de relatórios claros em formato HTML (prontos para impressão ou conversão para PDF) contendo período, investimentos, alcance, cliques, leads, vendas, problemas e recomendações.
+### Fase 2 — Resultado operacional
 
----
+Métricas por período, tarefas, relatórios PDF/HTML, alertas e SLA de atendimento dos leads.
 
-## 5. Escopo do MVP (Mínimo Produto Viável)
+### Fase 3 — Integrações governadas
 
-Para garantir agilidade no lançamento, o MVP conterá apenas quatro frentes essenciais:
-1. **Cadastro de clientes e negócios**
-2. **Diagnóstico de campanhas**
-3. **Planejamento de campanhas**
-4. **Painel manual de métricas e leads**
+Google Ads, Meta Ads, TikTok, GA4 e GTM com OAuth, feature flags, idempotência, retries e monitoramento de tokens.
 
-### O que fica para a Segunda Fase (Expansão):
-* Publicidade automática e integrações completas com APIs (Google Ads, Meta Ads, TikTok Ads)
-* Automações de WhatsApp, stories e inteligência artificial avançada
-* Gestão financeira completa e marketplace de influenciadores
+## Fora do escopo imediato
 
----
-
-## 6. Fases de Desenvolvimento e Validação
-
-* **Fase 1 — Validação da dor:** Entrevistas com gestores de tráfego, agências pequenas, prestadores de serviço e infoprodutores para investigar comportamentos reais e demandas recorrentes.
-* **Fase 2 — MVP operacional:** Desenvolvimento do login, cadastros, formulário de diagnóstico, regras de recomendação, painel de métricas e relatórios básicos.
-* **Fase 3 — Produto comercial:** Adição de múltiplos usuários, planos de assinatura, exportação em PDF e biblioteca de criativos.
-* **Fase 4 — Integrações:** Conexão nativa com plataformas de anúncios e ferramentas de análise (Google Analytics, GTM, etc.) validadas pelo uso real.
-
----
-
-## 7. Arquitetura Técnica Recomendada
-
-A stack tecnológica informada é perfeitamente adequada para a construção do projeto:
-
-* **Backend:** PHP puro com PDO, arquitetura MVC simples, sessões para autenticação, controle de permissões, prepared statements e validação rigorosa no servidor.
-* **Banco de Dados (MySQL):** Tabelas estruturadas para `usuarios`, `clientes`, `negocios`, `campanhas`, `canais`, `diagnosticos`, `perguntas_diagnostico`, `respostas_diagnostico`, `recomendacoes`, `metricas`, `leads`, `interacoes_leads` e `relatorios`.
-* **Frontend:** HTML5, CSS3 e JavaScript puro com requisições via `fetch` / AJAX e interface responsiva.
-
----
-
-## 8. Modelos de Negócio
-
-1. **Ferramenta para Gestores e Agências:** Foco em profissionais que gerenciam múltiplos clientes e precisam escalar a organização e os relatórios.
-2. **Ferramenta para Pequenos Empresários:** Foco no próprio dono do negócio que quer entender e organizar sua divulgação.
-3. **Serviço Combinado:** Oferta conjunta de plataforma + consultoria/implantação no início para garantir tração financeira e validação do software.
-
----
-
-## 9. Recomendação Final de Posicionamento
-
-> **Plataforma para diagnosticar campanhas, organizar estratégias de tráfego pago, acompanhar leads e demonstrar resultados de marketing digital.**
-
-Evolução comercial por planos modulares:
-* *Plano Diagnóstico*
-* *Plano Gestão de Campanhas*
-* *Plano Leads e CRM*
-* *Plano Relatórios para Clientes*
-* *Plano Agência* (múltiplos clientes)
+Publicação automática de anúncios, automações de WhatsApp, gestão financeira completa, marketplace de influenciadores e IA generativa avançada. Esses itens exigem validação comercial, políticas de consentimento e maior maturidade de segurança.
