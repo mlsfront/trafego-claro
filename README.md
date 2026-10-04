@@ -1,362 +1,92 @@
 # Tráfego Claro
 
-Plataforma piloto para diagnosticar campanhas, organizar estratégias de tráfego pago, acompanhar leads e demonstrar resultados de marketing digital.
+Plataforma de diagnóstico, planejamento e acompanhamento de marketing digital para pequenos negócios e profissionais de performance.
 
-## Sobre o projeto
+> **Versão atual:** `0.2.0-dev` — MVP front-end operacional, com dados locais para demonstração.
 
-O Tráfego Claro foi concebido para atender pequenos negócios, gestores de tráfego e profissionais de marketing que precisam organizar informações de campanhas e identificar oportunidades de melhoria.
+## O que foi melhorado
 
-A primeira versão funciona como um protótipo visual de um sistema de apoio à gestão de marketing digital, com foco em:
+Esta versão transforma o protótipo visual em uma demonstração navegável e testável. O dashboard calcula investimento, leads, CPL e conversão a partir dos dados atuais; campanhas e leads têm filtros; novos registros podem ser criados sem backend; o diagnóstico usa regras explicáveis e pode ser salvo localmente; os dados podem ser exportados em JSON; e o relatório pode ser impresso para conversão em PDF pelo navegador.
 
-- Diagnóstico de campanhas;
-- Organização de campanhas e canais;
-- Acompanhamento de métricas;
-- Gestão simples de leads;
-- Geração de recomendações;
-- Apresentação de relatórios.
+Também foram adicionados estados vazios, mensagens de feedback, foco visível, rótulos acessíveis, `meta description`, impressão otimizada, layout responsivo e a documentação de contexto do projeto.
 
-O projeto faz parte de uma proposta de MVP e, nesta etapa, utiliza dados simulados no front-end.
+## Execução
 
-## Objetivo
-
-Criar uma plataforma simples e acessível para ajudar empresas e profissionais a responderem perguntas como:
-
-- Por que minha campanha não está veiculando?
-- Por que estou recebendo poucos leads?
-- Meu custo por lead está alto?
-- Minha campanha está gerando resultados?
-- Quais ações devo priorizar?
-- Como demonstrar os resultados para um cliente?
-- De onde estão vindo os meus leads?
-
-## Funcionalidades do protótipo
-
-### Dashboard
-
-A tela principal apresenta:
-
-- Investimento total;
-- Quantidade de leads;
-- Custo por lead;
-- Taxa de conversão;
-- Gráfico de desempenho;
-- Indicador de saúde das campanhas;
-- Campanhas ativas;
-- Alertas e recomendações.
-
-### Diagnóstico de campanhas
-
-O usuário pode informar:
-
-- Nome do negócio;
-- Canal utilizado;
-- Objetivo da campanha;
-- Problema identificado;
-- Investimento mensal;
-- Página de destino;
-- Observações adicionais.
-
-Após o preenchimento, a aplicação gera recomendações preliminares com base no problema informado.
-
-### Gestão de campanhas
-
-A seção de campanhas permite visualizar:
-
-- Nome da campanha;
-- Canal utilizado;
-- Objetivo;
-- Investimento;
-- Quantidade de leads;
-- Status da campanha.
-
-### Gestão de leads
-
-A seção de leads apresenta informações como:
-
-- Nome do contato;
-- Origem;
-- Campanha relacionada;
-- Status comercial;
-- Data do último contato.
-
-### Relatórios
-
-A área de relatórios apresenta um resumo dos resultados e recomendações para o próximo período de análise.
-
-## Tecnologias utilizadas
-
-- HTML5;
-- CSS3;
-- JavaScript Vanilla;
-- Design responsivo;
-- Sem dependências externas obrigatórias;
-- Dados simulados no front-end.
-
-## Como executar
-
-### 1. Clone o repositório
+O projeto é compatível com Apache/XAMPP e não requer instalação de dependências:
 
 ```bash
-git clone https://github.com/mlsfront/trafego-claro.git
+cd /opt/lampp/htdocs/trafego-claro
+# Apache servindo a pasta:
+http://localhost/trafego-claro/
 ```
 
-### 2. Acesse a pasta do projeto
+Para uma verificação rápida sem Apache:
 
 ```bash
-cd trafego-claro
+python3 -m http.server 8080
+# abra http://localhost:8080
 ```
 
-### 3. Abra o arquivo
+Os dados de demonstração são gravados no `localStorage` do navegador. Para restaurar o estado inicial, remova a chave `trafego-claro-mvp-v1` no armazenamento do site.
 
-Abra o arquivo `index.html` diretamente no navegador.
-
-Também é possível utilizar uma extensão como o Live Server no Visual Studio Code.
-
-## Estrutura inicial
+## Estrutura
 
 ```text
 trafego-claro/
-│
 ├── index.html
+├── CONTEXTO_PROJETO.md
 ├── README.md
-│
+├── CHANGELOG.md
 ├── assets/
-│   ├── css/
-│   │   └── style.css
-│   │
-│   ├── js/
-│   │   └── app.js
-│   │
+│   ├── css/style.css
+│   ├── js/app.js
 │   └── images/
-│
-└── docs/
-    └── planejamento.md
+└── docs/planejamento.md
 ```
 
-Na versão inicial, o protótipo pode funcionar com todos os estilos e scripts dentro do arquivo `index.html`. Conforme o projeto evoluir, os arquivos devem ser separados para facilitar a manutenção.
+## Princípios de implementação
 
-## Próxima versão da estrutura
+A interface permanece sem dependências externas para facilitar a implantação no ambiente informado (Linux/Debian, Apache e PHP 8.2). O JavaScript usa `BASE_URL` para recursos, funções pequenas e renderização baseada em estado. A camada local é um adaptador de demonstração: no backend, ela deve ser substituída por API PHP com PDO, autenticação e autorização por workspace.
 
-A versão com backend poderá seguir uma organização semelhante a esta:
+Não são usados valores vindos do usuário diretamente em `innerHTML` sem escape; a função `escapeHtml` protege as áreas de conteúdo dinâmico. Isso não substitui validação no servidor quando a API for criada.
 
-```text
-trafego-claro/
-│
-├── public/
-│   ├── index.php
-│   └── assets/
-│       ├── css/
-│       └── js/
-│
-├── app/
-│   ├── controllers/
-│   ├── models/
-│   ├── services/
-│   └── views/
-│
-├── config/
-│   └── database.php
-│
-├── database/
-│   └── migrations/
-│
-├── routes/
-│   └── web.php
-│
-└── README.md
-```
+## Roadmap priorizado
 
-## Roadmap
+### 0 — Validação do problema (imediato)
 
-### Fase 1 — Protótipo visual
+- Entrevistar 5–10 pequenos negócios, gestores e microagências.
+- Medir conclusão do diagnóstico, recomendações aceitas e retorno à plataforma.
+- Validar a taxonomia mínima de campanha, lead, conversão e tarefa.
 
-- [x] Dashboard;
-- [x] Tela de diagnóstico;
-- [x] Listagem de campanhas;
-- [x] Listagem de leads;
-- [x] Tela de relatórios;
-- [x] Layout responsivo;
-- [x] Navegação entre telas;
-- [x] Recomendações preliminares baseadas em regras.
+### 1 — MVP multiusuário (próximo ciclo)
 
-### Fase 2 — MVP funcional
+- PHP 8.2 + PDO + MySQL, migrations e seed de ambiente.
+- Cadastro, login, recuperação de senha e isolamento por workspace.
+- CRUD de negócios, campanhas, leads e diagnósticos.
+- API JSON com validação, CSRF, rate limiting básico e logs de auditoria.
+- Filtros persistentes, tarefas derivadas das recomendações e histórico.
 
-- [ ] Cadastro de usuários;
-- [ ] Login e autenticação;
-- [ ] Cadastro de clientes;
-- [ ] Cadastro de negócios;
-- [ ] Cadastro de campanhas;
-- [ ] Cadastro de leads;
-- [ ] Persistência dos dados no MySQL;
-- [ ] Edição e exclusão de registros;
-- [ ] Filtros por cliente, canal e status;
-- [ ] Histórico de diagnósticos.
+### 2 — Resultado e retenção
 
-### Fase 3 — Relatórios e inteligência operacional
+- Métricas manuais por período: investimento, impressões, cliques, leads, vendas e receita.
+- Cálculo de CTR, CPL, CPA, taxa de conversão e ROAS com denominadores explícitos.
+- Relatório HTML/PDF com marca branca, comentários e compartilhamento seguro.
+- Alertas de anomalia e acompanhamento de SLA de primeiro contato.
 
-- [ ] Exportação de relatórios;
-- [ ] Geração de relatórios em PDF;
-- [ ] Indicadores personalizados;
-- [ ] Histórico de métricas;
-- [ ] Alertas de desempenho;
-- [ ] Biblioteca de recomendações;
-- [ ] Modelos de diagnóstico por segmento;
-- [ ] Permissões para usuários e clientes.
+### 3 — Integrações com governança
 
-### Fase 4 — Integrações
+- OAuth e ingestão incremental para Google Ads, Meta Ads e TikTok Ads.
+- GA4/GTM para validação de eventos e UTMs.
+- Fila de sincronização, idempotência, retries e monitoramento de tokens.
+- WhatsApp e formulários somente após política de consentimento e LGPD.
 
-- [ ] Google Ads;
-- [ ] Meta Ads;
-- [ ] TikTok Ads;
-- [ ] Google Analytics;
-- [ ] Google Tag Manager;
-- [ ] Plataformas de e-commerce;
-- [ ] WhatsApp;
-- [ ] Integração com formulários e landing pages.
+### Estratégia de tráfego e crescimento
 
-## Banco de dados planejado
+A aquisição inicial deve priorizar intenção e prova de valor, não volume. A landing page deve oferecer um diagnóstico gratuito com resultado em poucos minutos; campanhas de pesquisa devem capturar dores específicas como “campanha não gera leads” e “CPL alto”; conteúdo deve explicar métricas sem jargão e apontar para o diagnóstico; e parcerias com contadores, consultores e freelancers podem reduzir CAC. O funil mínimo deve acompanhar visita → início do diagnóstico → diagnóstico concluído → primeiro cadastro → retorno em 7 dias.
 
-As principais entidades previstas são:
+## Critérios de aceite da próxima fase
 
-```text
-usuarios
-clientes
-negocios
-campanhas
-canais
-diagnosticos
-perguntas_diagnostico
-respostas_diagnostico
-recomendacoes
-metricas
-leads
-interacoes_leads
-relatorios
-```
-
-## Exemplo de indicadores
-
-A plataforma poderá calcular indicadores como:
-
-### Taxa de cliques
-
-```text
-CTR = cliques / impressões × 100
-```
-
-### Custo por lead
-
-```text
-CPL = investimento / quantidade de leads
-```
-
-### Custo por aquisição
-
-```text
-CPA = investimento / quantidade de clientes
-```
-
-### Taxa de conversão
-
-```text
-Taxa de conversão = conversões / visitantes × 100
-```
-
-### Retorno sobre investimento em anúncios
-
-```text
-ROAS = receita atribuída aos anúncios / investimento
-```
-
-## Público-alvo
-
-O projeto pode atender diferentes perfis:
-
-- Gestores de tráfego autônomos;
-- Pequenas agências;
-- Prestadores de serviços;
-- Negócios locais;
-- Lojas virtuais;
-- Profissionais liberais;
-- Infoprodutores;
-- Pequenas empresas;
-- Consultores de marketing digital.
-
-## Proposta de valor
-
-O Tráfego Claro pretende centralizar informações que normalmente ficam espalhadas em planilhas, mensagens e diferentes plataformas.
-
-A proposta é oferecer uma visão mais simples sobre:
-
-- O que está acontecendo com uma campanha;
-- Quais problemas precisam de atenção;
-- Quais leads foram gerados;
-- Quanto está sendo investido;
-- Quais resultados foram obtidos;
-- Quais ações devem ser executadas.
-
-## Escopo do piloto
-
-O piloto não realiza, inicialmente:
-
-- Publicação automática de anúncios;
-- Alterações diretas nas contas de anúncios;
-- Gestão financeira completa;
-- Edição de vídeos;
-- Automação completa de redes sociais;
-- Marketplace de influenciadores;
-- Integrações oficiais com plataformas de anúncios.
-
-Essas funcionalidades poderão ser avaliadas após a validação do MVP.
-
-## Princípios do projeto
-
-- Simplicidade de uso;
-- Foco em pequenos negócios;
-- Dados organizados;
-- Recomendações práticas;
-- Interface objetiva;
-- Evolução modular;
-- Validação antes de grandes integrações;
-- Separação entre métricas e resultados comerciais.
-
-## Possíveis planos comerciais
-
-### Plano Diagnóstico
-
-- Diagnóstico de campanhas;
-- Checklist de problemas;
-- Recomendações básicas;
-- Histórico de análises.
-
-### Plano Gestão
-
-- Cadastro de campanhas;
-- Acompanhamento de métricas;
-- Alertas;
-- Relatórios periódicos.
-
-### Plano Leads
-
-- CRM simplificado;
-- Organização dos contatos;
-- Origem dos leads;
-- Funil comercial;
-- Histórico de atendimento.
-
-### Plano Agência
-
-- Múltiplos clientes;
-- Usuários adicionais;
-- Relatórios personalizados;
-- Identidade visual;
-- Permissões por cliente.
-
-## Status do projeto
-
-> Protótipo visual em desenvolvimento.
-
-O projeto ainda não possui backend, autenticação ou integração com plataformas externas. O objetivo atual é validar a proposta visual, a estrutura do produto e os principais fluxos de uso.
+O backend só deve ser considerado pronto quando houver testes de autenticação e autorização, validação de payloads, isolamento entre workspaces, migrations reproduzíveis, logs sem dados sensíveis, backup testado e um ambiente de staging. A primeira integração de mídia deve ser liberada atrás de feature flag e comparada com um conjunto de dados de referência.
 
 ## Licença
 
